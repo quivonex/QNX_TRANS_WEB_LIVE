@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <title>Trip Memo</title>
+
+        <style>
+            table{width:100%;height: 100%;
+                border: 1px solid black;border-collapse: collapse;}
+                th,td{border:1px solid black; padding:3px 5px;font-size: 13px;
+                }
+                .table1{
+                    th,td{
+                        border: none;
+                    }
+                }
+                .table1
+                {
+                   th,td{
+                    border: none;
+                     }
+                }
+                .sub-table1
+                {
+                     border: none;
+
+                }
+                .table2
+                {
+                    td,th{
+                        text-align: center;
+                    }
+                }
+                .table3
+                 {
+                    th,td{
+                        border:none;
+                        text-align: center;
+                        } 
+                 } 
+           .main-heading
+            {
+               font-family: Arial,  sans-serif;
+               color: red;
+               font-weight: bold;
+               text-transform: uppercase;    
+               font-size: 35px;
+               position:relative;
+               bottom:90px;
+               text-align:center;
+            }      
+           .heading
+           {
+               position:relative;
+               text-align: center;
+               bottom:130px;
+           }
+            .header {
+               text-align: center;
+             }
+             .header img {
+               width: 170px;
+               height:150px;
+               float: left;
+               right: 30px;
+               position: relative;
+               bottom:170px;
+             }
+             .info
+             {
+              position: relative;
+              bottom:120px;
+              right:70px;
+             }
+   
+              .barcode {
+                position: relative;
+                right: -580px;
+                width: 200px;
+                height: 50px;
+                top:85px;
+             }
+          .barcode img {
+            width: 100%;
+            height: 35px;
+          }
+          .barcode h3 {
+            display: none;
+          }
+          .address{
+            font-size:13px;
+            white-space: normal; 
+            word-wrap: break-word;
+            width:620px;
+            position: relative;
+            left: 50px;
+          }
+          .main-t{
+            position: relative;
+            bottom: 140px;
+          }           
+        </style>
+    </head>
+
+    <body>
+        <div class='barcode'>
+            <img
+              src='data:image/png;base64,{{ barcode_base64 }}'
+              alt='Trip Memo No Barcode'
+            />
+          </div>
+          <h3 class='main-heading'>{{ company.company_name }}</h3>
+          <div class='header'>
+            <img src='{{ MEDIA_URL }}{{ company.company_logo }}' alt='Company Logo' />
+
+            <div class='info'>
+                <p class='address'>{{ company.address }}</p>
+                <p style='position:relative;bottom:10px;right:25px;font-size:13px;'>
+                    EMAIL: <b style='font-weight:normal;font-size:14px;'>{{ company.email_id }}&nbsp;&nbsp;MOB:{{ company.contact_number }}</b>
+                </p>
+                </div>
+
+
+          </div>
+
+         <h3 class='heading'>TRIP MEMO</h3>
+
+        <div class='main-t'>
+         <table  class='table1'>
+            <tbody>
+                <tr>
+                    <th>Branch</th>
+                    <td>{{trip_memo.branch}}</td>
+                    <th>Trip No</th>
+                    <th>{{ trip_memo.trip_no }}</th>
+                    <th>Trip Date</th>
+                    <td>{{ trip_memo.date|date:'d/m/Y' }}</td>
+                </tr>
+                <tr>
+                    <th>Driver Name</th>
+                    <td>{{ trip_memo.driver_name }}</td>
+                    <th>Vehicale No</th>
+                    <td>{{ trip_memo.vehicle_no }}</td>
+                    <th>Vehicle Type</th>
+                    <td>{{ trip_memo.vehicle_no.vehical_type.type_name}}</td>
+                </tr>
+                <tr>
+                    <th>From</th>
+                    <td>{{ trip_memo.from_branch }}</td>
+                    <th>To</th>
+                    <td>{{ trip_memo.to_branch }}</td>
+                    <th>Kilometer</th>
+                    <th>{{ trip_memo.km|floatformat:0  }}KM</th>
+                </tr>
+                <tr>
+                    <th>Owner Name</th>
+                    <td>{{ trip_memo.vehicle_no.owner.name}}</td>
+                    <th>Contact No</th>
+                    <td>{{ trip_memo.contact_no }}</td>
+                </tr>
+            </tbody>
+         </table>
+
+        <table class='table2'>
+            <tbody>
+                <tr>
+                    <th>Memo No</th>
+                    <th>Memo Date</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Wt</th>
+                    <th>Pkgs</th>
+                    <th>Remark</th>
+                </tr>
+                {% for lr in lrs %}
+                <tr>
+                    <td>{{lr.booking_memo.memo_no}}</td>
+                    <td>{{lr.booking_memo.date|date:'d/m/Y'}}</td>
+                    <td>{{lr.booking_memo.from_branch}}</td>
+                    <td>{{lr.booking_memo.to_branch}}</td>
+                    <td style='text-align:center'>{{lr.booking_memo.total_weight|floatformat:0 }}</td>
+                    <td style='text-align:center'>{{lr.booking_memo.lr_qty|floatformat:0 }}</td>
+                    <td>{{lr.remark}}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <th colspan='4'>Total Weight</th>
+                    <th>{{ trip_memo.total_weight|floatformat:0  }}</th>
+                    <th>{{ trip_memo.total_qty|floatformat:0  }}</th>
+                    <th></th>
+                </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <tbody>
+                <tr>
+                    <th>Lorry Freight</th>
+                    <th>Less Advance</th>
+                    <th>Balance Payment</th>
+                    <th>Hamali/Detention/Uni</th>
+                    <th>Extra Delivery/Other</th>
+                    <th>Total Payment</th>
+                   
+                </tr>
+                <tr>
+                    <td>{{ trip_memo.total_weight }}</td>
+                    <td>{{ trip_memo.advance }}</td>
+                    <td>{{ trip_memo.balance }}</td>
+                    <td>{{ trip_memo.hamali }}</td>
+                    <td>{{ trip_memo.extra_amt }}</td>
+                    <td>{{ trip_memo.total_amt }}</td>
+                </tr>
+                <tr>
+            </tbody>
+        </table>
+        <table class='table3'>
+            <tbody>
+                <tr>
+                    <th>{{ user_name }}</th>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Prepared By</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>{{ trip_memo.created_at|date:'d/m/Y h:i A' }}</th>
+                    <th>Loading Clerk</th>
+                    <th>Owner's/Driver's Signature</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </body>
+</html>

@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.form-container {
+    margin-bottom: 40px;
+}
+
+.form-container form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+
+.form-container .form-field {
+    flex: 1;
+    /* min-width: calc(50% - 15px); */
+    box-sizing: border-box;
+}
+
+.form-container .form-field label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+.form-container button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    /* margin-top: 10px; */
+}
+
+.form-container button:hover {
+    background-color: #0056b3;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.form-field label {
+    display: block;
+    font-weight: bold;
+    margin-right: 15px;
+    /* Space between label and input field */
+    width: auto;
+    /* Allow label to take up only necessary width */
+}
+
+/* Style for the input field */
+.form-field input,
+.form-field select,
+.form-field textarea {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 90%;
+}

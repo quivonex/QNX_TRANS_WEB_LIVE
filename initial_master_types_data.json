@@ -1,0 +1,850 @@
+[
+  {
+      "model": "transactions.collectiontypes",
+      "pk": 1,
+      "fields": {
+          "type_name": "LOCAL",
+          "created_by": 1,
+          "created_at": "2024-12-16T00:00:00Z",
+          "updated_by": null,
+          "updated_at": "2024-12-16T00:00:00Z",
+          "is_active": true,
+          "is_show_booking_memo": true,
+          "flag": true
+      }
+  },
+  {
+      "model": "transactions.collectiontypes",
+      "pk": 2,
+      "fields": {
+          "type_name": "GODOWN",
+          "created_by": 1,
+          "created_at": "2024-12-16T00:00:00Z",
+          "updated_by": null,
+          "updated_at": "2024-12-16T00:00:00Z",
+          "is_active": true,
+          "is_show_booking_memo": true,
+          "flag": true
+      }
+  },
+  {
+      "model": "transactions.collectiontypes",
+      "pk": 3,
+      "fields": {
+          "type_name": "FTL",
+          "created_by": 1,
+          "created_at": "2024-12-16T00:00:00Z",
+          "updated_by": null,
+          "updated_at": "2024-12-16T00:00:00Z",
+          "is_active": true,
+          "is_show_booking_memo": true,
+          "flag": true
+      }
+  },
+  {
+      "model": "transactions.deliverytypes",
+      "pk": 1,
+      "fields": {
+          "type_name": "LOCAL",
+          "created_by": 1,
+          "created_at": "2024-12-16T00:00:00Z",
+          "updated_by": null,
+          "updated_at": "2024-12-16T00:00:00Z",
+          "is_active": true,
+          "is_show_booking_memo": true,
+          "flag": true
+      }
+  },
+  {
+      "model": "transactions.deliverytypes",
+      "pk": 2,
+      "fields": {
+          "type_name": "GODOWN",
+          "created_by": 1,
+          "created_at": "2024-12-16T00:00:00Z",
+          "updated_by": null,
+          "updated_at": "2024-12-16T00:00:00Z",
+          "is_active": true,
+          "is_show_booking_memo": true,
+          "flag": true
+      }
+  },
+  {
+      "model": "transactions.deliverytypes",
+      "pk": 3,
+      "fields": {
+          "type_name": "FTL",
+          "created_by": 1,
+          "created_at": "2024-12-16T00:00:00Z",
+          "updated_by": null,
+          "updated_at": "2024-12-16T00:00:00Z",
+          "is_active": true,
+          "is_show_booking_memo": true,
+          "flag": true
+      }
+  },
+  {
+      "model": "transactions.loadtypes",
+      "pk": 1,
+      "fields": {
+          "type_name": "Part Load (PL)",
+          "created_by": 1,
+          "created_at": "2024-12-16T00:00:00Z",
+          "updated_by": null,
+          "updated_at": "2024-12-16T00:00:00Z",
+          "is_active": true,
+          "flag": true
+      }
+  },
+  {
+      "model": "transactions.loadtypes",
+      "pk": 2,
+      "fields": {
+          "type_name": "FULL TRUCK LOAD (FTL)",
+          "created_by": 1,
+          "created_at": "2024-12-16T00:00:00Z",
+          "updated_by": null,
+          "updated_at": "2024-12-16T00:00:00Z",
+          "is_active": true,
+          "flag": true
+      }
+  },
+  {
+      "model": "transactions.paidtypes",
+      "pk": 1,
+      "fields": {
+          "type_name": "PAID",
+          "created_by": 1,
+          "created_at": "2024-12-16T00:00:00Z",
+          "updated_by": null,
+          "updated_at": "2024-12-16T00:00:00Z",
+          "is_active": true,
+          "flag": true
+      }
+  },
+  {
+      "model": "transactions.paidtypes",
+      "pk": 2,
+      "fields": {
+          "type_name": "UNPAID",
+          "created_by": 1,
+          "created_at": "2024-12-16T00:00:00Z",
+          "updated_by": null,
+          "updated_at": "2024-12-16T00:00:00Z",
+          "is_active": true,
+          "flag": true
+      }
+  },
+  {
+      "model": "transactions.paidtypes",
+      "pk": 3,
+      "fields": {
+          "type_name": "CANCEL",
+          "created_by": 1,
+          "created_at": "2024-12-16T00:00:00Z",
+          "updated_by": null,
+          "updated_at": "2024-12-16T00:00:00Z",
+          "is_active": true,
+          "flag": true
+      }
+  },
+  {
+      "model": "transactions.paytypes",
+      "pk": 1,
+      "fields": {
+          "type_name": "PAID",
+          "created_by": 1,
+          "created_at": "2024-12-16T00:00:00Z",
+          "updated_by": null,
+          "updated_at": "2024-12-16T00:00:00Z",
+          "is_active": true,
+          "flag": true
+      }
+  },
+  {
+      "model": "transactions.paytypes",
+      "pk": 2,
+      "fields": {
+          "type_name": "TOPAY",
+          "created_by": 1,
+          "created_at": "2024-12-16T00:00:00Z",
+          "updated_by": null,
+          "updated_at": "2024-12-16T00:00:00Z",
+          "is_active": true,
+          "flag": true
+      }
+  },
+  {
+      "model": "transactions.paytypes",
+      "pk": 3,
+      "fields": {
+          "type_name": "TBB",
+          "created_by": 1,
+          "created_at": "2024-12-16T00:00:00Z",
+          "updated_by": null,
+          "updated_at": "2024-12-16T00:00:00Z",
+          "is_active": true,
+          "flag": true
+      }
+  },
+  {
+      "model": "account.deductionreasontype",
+      "pk": 1,
+      "fields": {
+        "type_name": "Sample Deduction Type",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.effecttypes",
+      "pk": 1,
+      "fields": {
+        "type_name": "VEHICLE NO",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.effecttypes",
+      "pk": 2,
+      "fields": {
+        "type_name": "LR NO",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.effecttypes",
+      "pk": 3,
+      "fields": {
+        "type_name": "EMPLOYEE NAME",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.effecttypes",
+      "pk": 4,
+      "fields": {
+        "type_name": "PARTY NAME",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.effecttypes",
+      "pk": 5,
+      "fields": {
+        "type_name": "HIRE BILL NO",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.effecttypes",
+      "pk": 6,
+      "fields": {
+        "type_name": "MEMO NO",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.effecttypes",
+      "pk": 7,
+      "fields": {
+        "type_name": "DRIVER NAME",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.effecttypes",
+      "pk": 8,
+      "fields": {
+        "type_name": "DELIVERY MEMO NO",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.effecttypes",
+      "pk": 9,
+      "fields": {
+        "type_name": "TRIP NO",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.effecttypes",
+      "pk": 10,
+      "fields": {
+        "type_name": "OTHER",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.paymenttypes",
+      "pk": 1,
+      "fields": {
+        "type_name": "PETROL EXPENSES",
+        "effect": 1,
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.paymenttypes",
+      "pk": 2,
+      "fields": {
+        "type_name": "DIESEL EXPENSES",
+        "effect": 1,
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.paymenttypes",
+      "pk": 3,
+      "fields": {
+        "type_name": "OFFICE EXPENSES",
+        "effect": 1,
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.paymenttypes",
+      "pk": 4,
+      "fields": {
+        "type_name": "COMPUTER EXPENSES",
+        "effect": 1,
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.paymenttypes",
+      "pk": 5,
+      "fields": {
+        "type_name": "STATIONERY EXPENSES",
+        "effect": 1,
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.paymenttypes",
+      "pk": 6,
+      "fields": {
+        "type_name": "HOTEL EXPENSES",
+        "effect": 1,
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.paymenttypes",
+      "pk": 7,
+      "fields": {
+        "type_name": "CRANE CHARGES",
+        "effect": 1,
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.paymenttypes",
+      "pk": 8,
+      "fields": {
+        "type_name": "OTHERS",
+        "effect": 1,
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.paymenttypes",
+      "pk": 9,
+      "fields": {
+        "type_name": "TOLL EXPENSES",
+        "effect": 1,
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "accounts.paymenttypes",
+      "pk": 10,
+      "fields": {
+        "type_name": "LOADING CHARGES",
+        "effect": 1,
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "branches.employeetype",
+      "pk": 1,
+      "fields": {
+        "type_name": "HR MANAGER",
+        "description": "Human Resources Manager",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "branches.employeetype",
+      "pk": 2,
+      "fields": {
+        "type_name": "FINANCE MANAGER",
+        "description": "Finance Department Manager",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "branches.employeetype",
+      "pk": 3,
+      "fields": {
+        "type_name": "CUSTOMER SERVICE MANAGER",
+        "description": "Manager for Customer Support",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "account.gstmaster",
+      "pk": 1,
+      "fields": {
+        "type_name": "SGST",
+        "percentage": 9.00,
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "account.gstmaster",
+      "pk": 2,
+      "fields": {
+        "type_name": "CGST",
+        "percentage": 9.00,
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "parties.partytypes",
+      "pk": 1,
+      "fields": {
+        "type_name": "WALKING",
+        "description": "Walk-in party",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "parties.partytypes",
+      "pk": 2,
+      "fields": {
+        "type_name": "BILLING",
+        "description": "Billing party",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "parties.partytypes",
+      "pk": 3,
+      "fields": {
+        "type_name": "IS CONTRACTED",
+        "description": "Contracted party",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "items.quotationtypes",
+      "pk": 1,
+      "fields": {
+        "type_name": "PER KG",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "items.quotationtypes",
+      "pk": 2,
+      "fields": {
+        "type_name": "FIXED",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "items.quotationtypes",
+      "pk": 3,
+      "fields": {
+        "type_name": "SPECIAL",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "items.quotationtypes",
+      "pk": 4,
+      "fields": {
+        "type_name": "PER/MULTIPLE",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "vehicals.vehicaltypes",
+      "pk": 1,
+      "fields": {
+        "type_name": "TATA 407",
+        "capacity": 4,
+        "description": "4-wheeler truck",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "vehicals.vehicaltypes",
+      "pk": 2,
+      "fields": {
+        "type_name": "TATA ACE",
+        "capacity": 2,
+        "description": "Mini truck",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "vehicals.vehicaltypes",
+      "pk": 3,
+      "fields": {
+        "type_name": "ASHOK LEYLAND DOST",
+        "capacity": 3,
+        "description": "Light truck",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "vehicals.vehicaltypes",
+      "pk": 4,
+      "fields": {
+        "type_name": "MAHINDRA BOLERO PICK UP",
+        "capacity": 5,
+        "description": "Pickup truck",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "vehicals.vehicaltypes",
+      "pk": 5,
+      "fields": {
+        "type_name": "EICHER 19 FEET",
+        "capacity": 7,
+        "description": "Large truck",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "vehicals.vehicaltypes",
+      "pk": 6,
+      "fields": {
+        "type_name": "TATA TRUCK (6 TYRE)",
+        "capacity": 10,
+        "description": "6-tyre large truck",
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "vehicals.vendortypes",
+      "pk": 1,
+      "fields": {
+        "type_name": "ATTACH",        
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "vehicals.vendortypes",
+      "pk": 2,
+      "fields": {
+        "type_name": "OWN",         
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "vehicals.vendortypes",
+      "pk": 3,
+      "fields": {
+        "type_name": "MARKET",          
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "account.voucherreceipttype",
+      "pk": 1,
+      "fields": {
+        "type_name": "LR Agst Ref",
+        "code": 1001,
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "account.voucherreceipttype",
+      "pk": 2,
+      "fields": {
+        "type_name": "Bill Agst Ref",
+        "code": 1002,
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "account.voucherreceipttype",
+      "pk": 3,
+      "fields": {
+        "type_name": "Contra",
+        "code": 1001,
+        "created_by": 1,
+        "created_at": "2024-12-16T00:00:00Z",
+        "updated_by": null,
+        "updated_at": "2024-12-16T00:00:00Z",
+        "is_active": true,
+        "flag": true
+      }
+    },
+    {
+      "model": "account.voucherpaymenttype",
+      "pk": 1,
+      "fields": {
+          "type_name": "PETROL EXPENSES",
+          "effect": "VEHICLE NO",
+          "mode_type": "SINGLE",
+          "code": 101,
+          "created_at": "2024-12-16T00:00:00Z",
+          "updated_at": "2024-12-16T00:00:00Z",            
+          "created_by": 1,
+          "updated_by": null
+      }
+  },
+  {
+      "model": "account.voucherpaymenttype",
+      "pk": 2,
+      "fields": {
+          "type_name": "DIESEL EXPENSES",
+          "effect": "VEHICLE NO",
+          "mode_type": "SINGLE",
+          "code": 102,
+          "created_at": "2024-12-16T00:00:00Z",
+          "updated_at": "2024-12-16T00:00:00Z",           
+          "created_by": 1,
+          "updated_by": null
+      }
+  },
+  {
+      "model": "account.voucherpaymenttype",
+      "pk": 3,
+      "fields": {
+          "type_name": "OFFICE EXPENSES",
+          "effect": "EMPLOYEE ID",
+          "mode_type": "MULTIPLE",
+          "code": 103,
+          "created_at": "2024-12-16T00:00:00Z",
+          "updated_at": "2024-12-16T00:00:00Z",            
+          "created_by": 1,
+          "updated_by": null
+      }
+  }
+]

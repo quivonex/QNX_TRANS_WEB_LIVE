@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <title>LDM Print</title>
+
+    <style>
+
+        table{width: 100%;height: 100%;
+            border-collapse: collapse;border: 1px solid black;}
+            th,td{
+               border:1px solid black; padding:3px;font-size: 13px;
+           }
+           .table1
+           {
+               th,td{
+                   border: none;
+               }
+           }
+           .sub-table1
+           {
+               border: none;
+           }
+           .table3
+           {
+               th,td{
+                   border:none;
+                   text-align: center;
+               } 
+           }
+           .heading
+                    {
+                       border:2px solid black;
+                       width:47%;
+                       padding:8px;
+                       position:relative;
+                       left:24%;
+                       bottom:45px;
+                    }
+            .header {
+               text-align: center;
+               position: relative;
+             }
+             .header img {
+               width: 90px;
+               height:80px;
+               float: left;
+               position: relative;
+               left: 20px;
+               top:50px;
+             }
+             .info
+             {
+              position: relative;
+              top:70px;
+              right:70px;
+             }
+   
+              .barcode {
+               position: absolute;
+               top: 95px;
+               right: 10px;
+               width: 200px;
+               height: 50px;
+             }
+          .barcode img {
+            width: 100%;
+            height: 35px;
+          }
+          .barcode h3 {
+            display: none;
+          }
+        
+     </style>
+
+    </head>
+    <body>
+
+        <div class='barcode'>
+            <img
+              src='data:image/png;base64,{{ barcode_base64 }}'
+              alt='LCM No Barcode'
+            />
+          </div>
+          <div class='header'>
+            <img src='{{ MEDIA_URL }}{{ company.company_logo }}' alt='Company Logo' />
+
+            <div class='info'>
+            <p>Address: {{ company.address }}</p>
+            <p style='position:relative;bottom:5px'>
+              Contact: {{ company.contact_number }} 
+            </p>
+            </div>
+
+          </div>
+          <h3 class='heading'>Billing Submission</h3>
+
+          <table class='table1'>
+            <tbody>
+                <tr>
+                    <tr>
+                        <th>Branch</th>
+                        <td>{{ delivery.branch_name }}</td>
+                        <th>Memo No</th>
+                        <th>{{ delivery.memo_no }}</th>
+                        <th>Memo Date</th>
+                        <td>{{ delivery.date|date:'d/m/Y' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Driver Name</th>
+                        <td>{{ delivery.driver_name }}</td>
+                        <th>From</th>
+                        <td>{{ delivery.from_branch}}</td>
+                        <th>Del Area</th>
+                        <td>{{delivery.to_branch}}</td>
+                    </tr>
+                    <tr>
+                        <th>Owner Name</th>
+                        <td>{{ delivery.vehical_no.owner.name}}</td>
+                        <th>Contact No</th>
+                        <td>{{ delivery.vehical_no.owner.contact_no }}</td>
+                        <th>Vehicle Type</th>
+                        <td>{{ delivery.vehical_no.vehical_type.type_name }}</td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <th></th>
+                        <td></td>
+                        <th>Vehicle No</th>
+                        <th>{{ delivery.vehical_no }}</th>
+                    </tr>
+                </tr>
+            </tbody>
+          </table>
+        
+        <table>
+            <tbody>
+                <tr>
+                    <th>Lr No</th>
+                    <th>Lr Date</th>
+                    <th>Vehicle No</th>
+                    <th style='width:400px;'>Consignor</th>
+                    <th style='width:400px;'>Consignee</th>
+                    <th>Pkgs</th>
+                    <th>Wt</th>
+                    <th>KM</th>
+                    <th>Destination</th>
+                    <th>Amount</th>
+                    <th>Remark</th>
+                </tr>
+                {% for lr in bookings%}
+                <tr>
+                    <td>{{ lr.lr_number }}</td>
+                    <td>{{ lr.date|date:'d/m/Y' }}</td>
+                    <td>{{ lr.del_vehicle }}</td>
+                    <td>{{ lr.consignor }}</td>
+                    <td>{{ lr.consignee }}</td>
+                    <td>{{ lr.tpackage|floatformat:0 }}</td>
+                    <td>{{ lr.tchargedwt }}</td>
+                    <td>{{ lr.coll_km }}</td>
+                    <td>{{ lr.del_at }}</td>
+                    <td>{{ lr.grand_total }}</td>
+                    <td>{{ lr.remark }}</td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <table>
+            <tbody>
+                <tr>
+                    <td rowspan='3'>टीप: गाडीतील सर्व माल मेमो प्रमाणे तपासुन घेतला आहे तसेच<br>
+                    गाडीतील सर्व मालाचे पेपर तपासुन घेतले आहेत.गाडीतील सर्व<br>
+                    मालाची जबाबदारी ही गाडी ड्रायव्हर व हायर गाडी मालकाची राहील.</td>
+                    <th>Lorry Freight</th>
+                    <td>{{ delivery.total_weight }}</td>
+                    <th>Less Advance</th>
+                    <td>{{ delivery.advance }}</td>
+
+                </tr>
+                <tr>
+                   <th>Balance Payment</th>
+                    <td>{{ delivery.balance }}</td>
+                    <th>Hamali/Union</th>
+                    <td>{{ delivery.hamali }}</td>
+                </tr>
+                <tr>
+                    <th>Extra Amount</th>
+                    <td>{{ delivery.extra_amt }}</td>
+                    <th>Total Payment</th>
+                    <td>{{ delivery.total_amt }}</td>
+
+                </tr>
+                <tr>
+                    <th colspan='5'>Remark: {{ delivery.memo_remarks }} </th>
+                </tr>
+            </tbody>
+        </table>
+
+         <table class='table3'>
+            <tbody>
+                
+                <tr>
+                    <th>{{ user_name }}</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>Prepared By</th>
+                </tr>
+                <tr>
+                    <th>{{ delivery.created_at|date:"d/m/Y h:i A" }}</th>
+                    <th>Loading Clerk</th>
+                    <th>Owner's/Driver's Signature</th>
+                </tr>
+            </tbody>
+        </table>
+
+    </body>
+</html>

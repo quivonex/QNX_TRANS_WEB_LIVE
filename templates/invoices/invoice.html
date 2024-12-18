@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <title>Invoice</title>
+    <style>
+      
+    
+           table{
+            width:100%;height: 100%;
+            border-collapse: collapse;
+            }
+            th,td{border:1px solid black; padding:3px 5px;font-size: 12px;
+            }
+            .table1
+            {
+                th,td{
+                   
+                    border: none;
+                }
+                td{
+                    height: 50px;
+                }
+            }
+            .sub-table2
+            {
+                th,td{
+                    border: none;
+                }
+            }
+            
+            .name-css{
+                width: 110px;
+            }
+            .capital{
+                font-size: 10px;
+            }
+            .capital-b{
+                font-size: 9.79px;
+            }
+            .main-heading
+            {
+               font-family: Arial,  sans-serif;
+               color: red;
+               font-weight: bold;
+               text-transform: uppercase;    
+               font-size: 35px;
+               position:relative;
+               bottom:90px;
+               text-align:center;
+            }
+            .heading{
+                position:relative;
+                text-align: center;
+                bottom:150px;
+            }
+            .header {
+               text-align: center;
+             }
+             .header img {
+               width: 170px;
+               height:150px;
+               float: left;
+               right: 30px;
+               position: relative;
+               bottom:170px; 
+             }
+              .info
+              {
+               position: relative;
+               right:70px;
+               bottom:120px;
+              }
+   
+          .barcode {
+            position: relative;
+            right: -580px;
+            width: 200px;
+            height: 50px;
+            top:70px;
+          }
+          h4{
+            position: relative;
+            bottom: 20px;
+            left: 60px;
+          }
+          .barcode img {
+            width: 100%;
+            height: 35px;
+          }
+          .barcode h3 {
+            display: none;
+          }
+          .address{
+            font-size:14px;
+            white-space: normal; 
+            word-wrap: break-word;
+            width:620px;
+            position: relative;
+            left: 50px;
+          }
+          .main-t{
+            position: relative;
+            bottom: 170px;
+          }
+          
+           
+        </style>
+     </head>   
+
+    <body>
+        {% for copy in copies|slice:':4' %}
+        {% if forloop.counter0|divisibleby:2 %}
+            <div class='page-container'>
+        {% endif %}
+        
+        <div class='invoice-container'>
+          
+        <div class='barcode'>
+            <img
+              src='data:image/png;base64,{{ barcode_base64 }}'
+              alt='LR No Barcode'
+            />
+            <h4>{{ lr.lr_number }}</h4>
+        </div>
+        <h3 class='main-heading'>{{ company.company_name }}</h3>
+          <div class='header'>
+            <img src='{{ MEDIA_URL }}{{ company.company_logo }}' alt='Company Logo' />
+
+            <div class='info'>
+                <p class='address'>{{ company.address }}</p>
+                <p style='position:relative;bottom:10px;right:25px;font-size:13px;'>
+                    EMAIL: <b style='font-weight:normal;font-size:14px;'>{{ company.email_id }}&nbsp;&nbsp;MOB:{{ company.contact_number }}</b>
+                </p>
+                <p style='position:relative;bottom:15px;font-size:13px;right:25px;'>
+                    GST NO: {{ company.GST_number }}&nbsp;&nbsp;PAN NO: {{ company.pan_no }}
+                </p>
+                </div>
+
+          </div>
+          <h2 class='heading'>LR</h2>
+          <div class='main-t'>
+            <table>
+             <tbody>
+                <tr>
+                    <th class='capital-b'>BRANCH</th>
+                    <th class='capital-b'>LR NO</th>
+                    <th class='capital-b'>DATE</th>
+                    <th class='capital-b'>LR TYPE</th>
+                    
+                </tr>
+                <tr>
+                    <td class='capital'>{{ lr.branch.branch_name }}</td>
+                    <td>{{ lr.lr_number }}</td>
+                    <td>{{ lr.date|date:'d/m/Y' }}</td>
+                    <td class='capital'>{{ lr.load_type.type_name }}</td> 
+                    
+                </tr>
+                </tbody>
+            </table>
+
+            <table>
+                <tr>
+                  <td>
+                    <table>
+                        <tbody>
+                            <tr style='text-align:center'>
+                                <th class='capital-b'  style='width:160px;'>FROM BRANCH</th>
+                                <th class='capital-b' style='width:180px;'>COLL AT</th>
+                                <th class='capital-b' style='width:130px;'>TO BRANCH</th>
+                                <th class='capital-b' style='width:50px;'>DE AT</th>
+                                <th class='capital-b'>VEHICLE NO</th>
+                                <th class='capital-b'>VEHICLE TYPE</th>
+                            </tr>
+                            <tr class='sub-table3'>
+                                <td class='capital'>{{ lr.from_branch }}</td>
+                                <td class='capital'>{{ lr.coll_at }}</td>
+                                <td class='capital'>{{ lr.to_branch }}</td>
+                                <td class='capital'>{{ lr.del_at }}</td>
+                                <td class='capital'>{{ lr.coll_vehicle.vehical_number }}</td>
+                                <td class='capital'>{{ lr.coll_vehicle.vehical_type.type_name }}</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan='3' style='width:50%;'>
+                                    <table class='sub-table2'>
+                                     <tbody>
+                                        <tr>
+                                            <th class='capital-b name-css' style='width:20px;'> CONSIGNOR</th>
+                                            <td class='capital'> {{ lr.consignor }}</td> 
+                                        </tr>
+                                        <tr>
+                                            <th class='capital-b'> ADDRESS</th>
+                                            <td class='capital'>{{ lr.consignor.address }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class='capital-b'> CONTACT NO </th>
+                                            <td class='capital'> {{ lr.consignor.contact_no }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class='capital-b'>EMAIL ID</th>
+                                            <td class='capital'>{{ lr.consignor.email_id }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class='capital-b'> GST NO </th>
+                                            <td class='capital'>{{ lr.consignor.gst_no }} </td>
+                                        </tr>
+                                     </tbody>
+                                    </table>
+                                 </td>
+
+                                 <td colspan='3'  style='width:50%;'>
+                                    <table class='sub-table2'>
+                                     <tbody>
+                                        <tr>
+                                            <th class='capital-b name-css' style='width:20px;'> CONSIGNEE</th>
+                                            <td class='capital'>{{ lr.consignee }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class='capital-b'> ADDRESS</th>
+                                            <td class='capital'>{{ lr.consignee.address }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class='capital-b'> CONTACT NO </th>
+                                            <td class='capital'>{{ lr.consignee.contact_no }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class='capital-b'>EMAIL ID</th>
+                                            <td class='capital'>{{ lr.consignee.email_id }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th class='capital-b'> GST NO </th>
+                                            <td class='capital'>{{ lr.consignee.gst_no }} </td>
+                                        </tr>
+            
+                                     </tbody>
+                                    </table>
+                                 </td>
+                            </tr>
+                            <tr>
+                                <td colspan='6'>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <th class='capital-b' >BILLING PARTY</th>
+                                            <th class='capital-b' style='width:50px;'>PAY TYPE</th>
+                                            <th class='capital-b' style='width:60px;'>COLL TYPE</th>
+                                            <th class='capital-b' style='width:50px;'>DEL TYPE</th>
+                                        </tr>
+                                        <tr>
+                                            <td class='capital'>{{ lr.billing_party }}</td>
+                                            <td class='capital'>{{ lr.pay_type }}</td>
+                                            <td class='capital'>{{ lr.coll_type }}</td>
+                                            <td class='capital'>{{ lr.del_type }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </td>
+                            </tr>                        
+                        </tbody>
+                    </table>
+                    
+                  </td>
+
+                  <td style='width:200px;'>
+                    <table>
+                      <tbody style='font-size: smaller;'>
+                        <tr>
+                            <th>Freight</th>
+                            <td  colspan='2'>{{ lr.freight }}</td>
+                        </tr>
+                        <tr>
+                            <th>Collection</th>
+                            <td>{{ lr.collection }}</td>
+                            <td>{{ lr.coll_km|floatformat:0 }}KM</td>
+                        </tr>
+                        <tr>
+                            <th>Door Del</th>
+                            <td>{{ lr.door_delivery }}</td>
+                            <td>{{ lr.del_km|floatformat:0 }}KM</td>
+                        </tr>
+                        <tr>
+                            <th>Hamali</th>
+                            <td  colspan='2'>{{ lr.hamali }}</td>
+                        </tr>
+                        <tr>
+                            <th>Bilty chrg</th>
+                            <td  colspan='2'>{{ lr.bilty_charges }}</td>
+                        </tr>
+                        <tr>
+                            <th>Godown Chrg</th>
+                            <td  colspan='2'>{{ lr.godown_charges }}</td>
+                        </tr>
+                        
+                        <tr>
+                            <th>{{ lr.other_charge_1.charges_name }}</th>
+                           
+                            <td  colspan='2'>{{ lr.other_charge_1_val }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ lr.other_charge_2.charges_name }}</th>
+                            <td  colspan='2'>{{ lr.other_charge_2_val }}</td>
+                        </tr>
+                        <tr>
+                            <th>Insurance Chrg</th>
+                            <td  colspan='2'>{{ lr.insurance_charges }}</td>
+                        </tr>   
+                        <tr>
+                            <th>E-Way Bill Chrg</th>
+                            <td  colspan='2'>{{ lr.e_way_bill_charges }}</td>
+                        </tr>   
+                        <tr>
+                            <th rowspan='2'>Grand Total</th>
+                            <th  colspan='2'>{{ lr.grand_total }}</th>
+                        </tr> 
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <table>
+                <tbody>
+                    
+                    <tr>
+                       <th class='capital-b' style='width:80px;'>MATERIAL DES</th>
+                       <th class='capital-b'>QTY</th>
+                       <th class='capital-b'>AC WT</th>
+                       <th class='capital-b' style='width:60px;'>CHRG WT</th>
+                       <th class='capital-b' style='width:40px;'>RATE</th>
+                       <th class='capital-b'>UNIT TYPE</th>
+                       <th class='capital-b'  style='width:190px;'>CHALLAN NO</th>
+                       <th class='capital-b'>INVOICE VALUE</th>
+                       <th class='capital-b'>E-WAY BILL NO</th>
+                    </tr>
+                    {% for desc in descriptions %}
+                    <tr>
+                        <td>{{ desc.description }}</td>
+                        <td>{{ desc.quantity }}</td>
+                        <td>{{ desc.actual_weight }}</td>
+                        <td>{{ desc.charged_weight }}</td>
+                        <td>{{ desc.rate }}</td>
+                        <td>{{ desc.unit_type.type_name }}</td>
+                        <td>{{ desc.challan_no }}</td>
+                        <td>{{ desc.inv_value }}</td>
+                        <td>{{ desc.e_way_bill_number }}</td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+              </table>
+
+              <table style='border:1px solid black;' class='table1'>
+                <tbody>
+                    
+                    <tr>
+                        <td style='width:30%'>
+                            <table>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th style='height:10px'></th>
+                                </tr>
+                                <tr>
+                                    <th class='capital-b' style='width:48%;'>STAMP & SIGNATURE</th>
+                                </tr>
+                                <tr>
+                                    <th class='capital-b' style='width:48%;'>RECEIVER'S CONTACT NO</th>
+                                </tr>
+                            </table>
+                        </td>
+
+                        <td style='width:45%'>
+                            <table style='width:50%'>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th class='capital-b' style='text-align:center;'>{{ user_name }}</th>
+                                </tr>
+                                <tr>
+                                    <th class='capital-b' style='text-align:center;'>PREPAID BY</th>
+                                </tr>
+                                <tr>
+                                    <th class='capital-b' style='text-align:center;'>{{ lr.created_at|date:'d/m/Y h:i A' }}</th>
+                                </tr>
+                            </table>
+                        </td>
+
+                        <td>
+                            <table>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th style='height:10px'></th>
+                                </tr>
+                                <tr>
+                                    <th style='height:10px'></th>
+                                </tr>
+                                <tr>
+                                    <th  class='capital-b' style='text-align:left;font-size:10px;'>REMARKS</th>
+                                </tr>
+                            </table>
+                        </td>
+                       
+                    </tr>
+                
+                </tbody>
+              </table>
+            </div>
+
+            {% if forloop.counter0|divisibleby:2 and not forloop.last %}
+                </div>
+            {% endif %}
+        {% endfor %}   
+        
+        </div>
+    </body>
+</html>

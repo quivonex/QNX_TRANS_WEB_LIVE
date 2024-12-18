@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <title>LCM</title>
+
+    <style>
+
+        table{width: 100%;height: 100%;
+         border-collapse: collapse;border: 1px solid black;}
+         th,td{
+            border:1px solid black; padding:3px;font-size: 13px;
+        }
+        .table1
+        {
+            th,td{
+                border: none;
+            }
+        }
+        .sub-table1
+        {
+            border: none;
+        }
+        .table3
+        {
+            th,td{
+                border:none;
+                text-align: center;
+            } 
+        }
+        .main-heading
+            {
+               font-family: Arial,  sans-serif;
+               color: red;
+               font-weight: bold;
+               text-transform: uppercase;    
+               font-size: 35px;
+               position:relative;
+               bottom:90px;
+               text-align:center;
+            }
+           .heading
+           {
+               position:relative;
+               text-align: center;
+               bottom:130px;
+           }
+            .header {
+               text-align: center;
+             }
+             .header img {
+               width: 170px;
+               height:150px;
+               float: left;
+               right: 30px;
+               position: relative;
+               bottom:170px;
+             }
+             .info
+             {
+              position: relative;
+              bottom:120px;
+              right:70px;
+             }
+   
+              .barcode {
+                position: relative;
+                right: -580px;
+                width: 200px;
+                height: 50px;
+                top:85px;
+             }
+          .barcode img {
+            width: 100%;
+            height: 35px;
+          }
+          .barcode h3 {
+            display: none;
+          }
+          .address{
+            font-size:13px;
+            white-space: normal; 
+            word-wrap: break-word;
+            width:620px;
+            position: relative;
+            left: 50px;
+          }
+          .main-t{
+            position: relative;
+            bottom: 135px;
+          }
+     </style>
+
+    </head>
+    <body>
+
+        <div class='barcode'>
+            <img
+              src='data:image/png;base64,{{ barcode_base64 }}'
+              alt='LCM No Barcode'
+            />
+          </div>
+          <h3 class='main-heading'>{{ company.company_name }}</h3>
+          <div class='header'>
+            <img src='{{ MEDIA_URL }}{{ company.company_logo }}' alt='Company Logo' /> 
+
+            <div class='info'>
+                <p class='address'>{{ company.address }}</p>
+                <p style='position:relative;bottom:10px;right:25px;font-size:13px;'>
+                    EMAIL: <b style='font-weight:normal;font-size:14px;'>{{ company.email_id }}&nbsp;&nbsp;MOB:{{ company.contact_number }}</b>
+                </p>
+            </div>
+
+          </div>
+          <h3 class='heading'>LOCAL COLLECTION MEMO</h3>
+        <div class='main-t'>
+          <table class='table1'>
+            <tbody>
+                <tr>
+                    <tr>
+                        <th>Branch</th>
+                        <td>{{collection.branch_name}}</td>
+                        <th>Memo No</th>
+                        <th>{{collection.memo_no}}</th>
+                        <th>Memo Date</th>
+                        <td>{{collection.date|date:'d/m/Y'}}</td>
+                    </tr>
+                    <tr>
+                        <th>Driver Name</th>
+                        <td>{{collection.driver_name}}</td>
+                        <th>From</th>
+                        <td>{{collection.from_branch}}</td>
+                        <th>Coll Area</th>
+                        <td>{{collection.to_branch}}</td>
+                    </tr>
+                    <tr>
+                        <th>Owner Name</th>
+                        <td>{{collection.vehical_no.owner.name}}</td>
+                        <th>Contact No</th>
+                        <td>{{collection.contact}}</td>
+                        <th>Vehicle Type</th>
+                        <td>{{collection.vehical_no.vehical_type.type_name}}</td>
+                    </tr>
+                </tr>
+            </tbody>
+          </table>
+        
+        <table>
+            <tbody>
+                <tr>
+                    <th>Lr No</th>
+                    <th>Lr Date</th>
+                    <th>Vehicle No</th>
+                    <th style='width:400px;'>Consignor</th>
+                    <th style='width:400px;'>Consignee</th>
+                    <th>Pkgs</th>
+                    <th>Wt</th>
+                    <th>KM</th>
+                    <th>Destination</th>
+                    <th>Amount</th>
+                    <th>Remark</th>
+                </tr>
+                {% for lr in lrs %}
+                <tr>
+                    <td>{{lr.lr_number}}</td>
+                    <td>{{lr.date|date:'d/m/Y'}}</td>
+                    <td>{{lr.coll_vehicle}}</td>
+                    <td>{{lr.consignor}}</td>
+                    <td>{{lr.consignee}}</td>
+                    <td>{{lr.tpackage|floatformat:0}}</td>
+                    <td>{{lr.tpackage|floatformat:0}}</td>
+                    <td>{{lr.coll_km|floatformat:0}}</td>
+                    <td>{{lr.del_at}}</td>
+                    <td>{{lr.grand_total}}</td>
+                    <td>{{lr.remark}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <table>
+            <tbody>
+                <tr>
+                    <th>Lorry Freight</th>
+                    <th>Less Advance</th>
+                    <th>Balance Payment</th>
+                    <th>Hamali/Union</th>
+                    <th>Extra Amount</th>
+                    <th>Total Payment</th>
+                </tr>
+                <tr>
+                    <td>{{collection.total_collection}}</td>
+                    <td>{{collection.advance}}</td>
+                    <td>{{collection.balance}}</td>
+                    <td>{{collection.hamali}}</td>
+                    <td>{{collection.extra_amt}}</td>
+                    <td>{{collection.total_amt}}</td>
+                </tr>
+                <tr>
+                    <th colspan='5'>Remark: {{collection.memo_remarks}}</th>
+                </tr>
+            </tbody>
+        </table>
+
+         <table class='table3'>
+            <tbody>
+                
+                <tr>
+                    <th>{{ user_name }}</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>Prepared By</th>
+                </tr>
+                <tr>
+                    <th>{{ collection.created_at|date:'d/m/Y h:i A' }}</th>
+                    <th>Loading Clerk</th>
+                    <th>Owner's/Driver's Signature</th>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </body>
+</html>

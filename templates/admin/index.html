@@ -1,0 +1,26 @@
+<!-- templates/admin/index.html -->
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+    <h1>Admin Dashboard</h1>
+    
+    <!-- Custom Group 1 -->
+    <h2>Group 1: Company & Financial</h2>
+    <div>
+        <h3><a href="{% url 'admin:app_list' 'company' %}">Company</a></h3>
+        <ul>
+            <li><a href="{% url 'admin:app_list' 'company' %}">Company Master</a></li>
+            <li><a href="{% url 'admin:app_list' 'company' %}">Financial Years</a></li>
+        </ul>
+    </div>
+    
+    <!-- Custom Group 2 -->
+    <h2>Group 2: State & Region</h2>
+    <div>
+        <h3><a href="{% url 'admin:app_list' 'company' %}">State & Region</a></h3>
+        <ul>
+            <li><a href="{% url 'admin:app_list' 'company' %}">State Master</a></li>
+            <li><a href="{% url 'admin:app_list' 'company' %}">Region Master</a></li>
+        </ul>
+    </div>
+{% endblock %}

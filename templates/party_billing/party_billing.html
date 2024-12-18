@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <title>Billing Party</title>
+
+    <style>
+
+        table{width: 100%;height: 100%;
+         border-collapse: collapse;border: 1px solid black;}
+         th,td{
+            border:1px solid black; padding:4px;font-size: 15px;
+        }
+        .table1
+        {
+            th,td{
+                border: none;
+                text-align: left;
+            }
+        }
+        .table2
+        {
+            th{
+                border: none;
+            }
+        }
+        .table
+        {
+            width: 23%;
+            position: absolute;
+            left: 590px;
+            top: 70px;
+        }
+        .table3
+        {
+            border: none;
+            th,td
+            {
+                padding: 1px;
+                font-size: 11px;
+                text-align: left;
+                border: none;
+                color: brown;
+            }
+        }
+        .table4
+        {
+            border: none;
+            th,td
+            {
+                padding: 2px;
+                font-size: 12px;
+                text-align: left;
+                border: none;
+                color: brown;
+            }
+            td
+            {
+                font-size: 13;
+            }
+        }
+        .table5
+        {
+            th{
+                text-align: center;
+            }
+        }
+        .main-heading
+        {
+            font-family: Arial,  sans-serif;
+            color: red;
+            font-weight: bold;
+            text-transform: uppercase;    
+            font-size: 35px;
+            position:relative;
+            bottom:90px;
+            text-align:center;
+        }
+        .heading
+        {
+            position:relative;
+            text-align: center;
+            bottom:130px;
+        }
+        .header {
+           text-align: center;
+         }
+         .header img {
+           width: 170px;
+           height:150px;
+           float: left;
+           right: 30px;
+           position: relative;
+           bottom:170px;
+         }
+          .info
+          {
+           position: relative;
+           right:70px;
+           bottom:120px;
+          }
+
+      .barcode {
+        position: relative;
+        right: -580px;
+        width: 200px;
+        height: 50px;
+        top:85px;
+      }
+      h4{
+        position: relative;
+        bottom: 20px;
+        left: 60px;
+      }
+      .barcode img {
+        width: 100%;
+        height: 35px;
+      }
+      .barcode h3 {
+        display: none;
+      }
+      .address{
+        font-size:14px;
+        white-space: normal; 
+        word-wrap: break-word;
+        width:620px;
+        position: relative;
+        left: 50px;
+      }
+      .main-t{
+        position: relative;
+        bottom: 135px;
+      }
+        
+     </style>
+
+    </head>
+
+    <body>
+
+        
+        <div class='barcode'>
+            <img
+              src='data:image/png;base64,{{ barcode_base64 }}'
+              alt='Trip Memo No Barcode'
+            />
+        </div>
+          <h3 class='main-heading'>{{ company.company_name }}</h3>
+          <div class='header'>
+            <img src='{{ MEDIA_URL }}{{ company.company_logo }}' alt='Company Logo' />
+
+            <div class='info'>
+                <p class='address'>{{ company.address }}</p>
+                <p style='position:relative;bottom:10px;right:25px;font-size:13px;'>
+                    EMAIL: <b style='font-weight:normal;font-size:14px;'>{{ company.email_id }}&nbsp;&nbsp;MOB:{{ company.contact_number }}</b>
+                </p>
+            </div>
+
+          </div>
+          <h3 class='heading'>BILLING PARTY</h3>
+     <div class='main-t'>
+         <table class='table1'>
+            <tbody>
+
+                <tr>
+                    <th>Party Name</th>
+                    <td>{{ statement.billing_party }}</td>
+                    <th>Bill No</th>
+                    <th style='font-size:14px;'>{{ statement.bill_no }}</th>
+                </tr>
+                <tr>
+                    <th>Address</th>
+                    <td>{{ statement.billing_party.address }}</td>
+                    <th>Bill Date</th>
+                    <td>{{ statement.date|date:'d/m/Y' }}</td>
+                </tr>
+                <tr>
+                    <th>Phone No</th>
+                    <td style='font-size:14px;'>{{ statement.billing_party.contact_no }}</td>
+                    <th>Vendor Code</th>
+                    <td>{{ statement.billing_party.po_no }}</td>
+                </tr>
+                <tr>
+                    <th>Email Id</th>
+                    <td style='font-size:14px;'>{{ statement.billing_party.email_id }}</td>
+                    <th>PO No</th>
+                    <td>{{ statement.billing_party.vendor_code }}</td>
+                </tr>
+                <tr>
+                    <th>Party GST No</th>
+                    <td>{{ statement.billing_party.gst_no }}</td>
+                </tr>
+            </tbody>
+         </table>
+
+         <table class=table5>
+            <tbody>
+                <tr>
+                    <th>Sr No</th>
+                    <th>Date</th>
+                    <th>LR No</th>
+                    <th>Consignor</th>
+                    <th>Consignee</th>
+                    <th>Invoice No</th>
+                    <th>Vehicle No</th>
+                    <th>Amount</th>
+                </tr>
+                {%  for bill  in  bookings %}
+                <tr>
+                    <td>{{ bill.id }}</td>
+                    <td>{{ bill.date|date:'d/m/Y' }}</td>
+                    <td>{{ bill.lr_booking.lr_number }}</td>
+                    <td>{{ bill.consignor}}</td>
+                    <td>{{ bill.consignee}}</td>
+                    <td>{{ bill.inv_value}}</td>
+                    <td>{{ bill.coll_vehicle.vehical_number  }}</td>
+                    <td style='text-align:center;'>{{ bill.totla_amt}}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <th colspan='7' style='text-align:center'>Total Amount</th>
+                    <th>{{ statement.totla_amt }}</th>
+                </tr>
+                <tr>
+                    <th colspan='7' style='text-align:center'>Grand Total</th>
+                    <th>{{ statement.totla_amt }}</th>
+                </tr>
+                <!-- <tr>
+                    <th colspan='8' style='text-align:left'>Amount In Word: FOUR THOUNSAND SIX HUNDRED NINETY</th>
+                </tr> -->
+                
+            </tbody>
+         </table>
+
+         <!-- <table>
+            <tbody>
+                <tr>
+                    <th>Name<b style='margin:52px;'>:{{ company.company_name }}</b></th>
+                </tr>
+                <tr>
+                    <th>Bank Name<b style='margin:18px;'>:SBI BANK</b></th>
+                </tr>
+                <tr>
+                    <th>A/C Number<b style='margin:11px;'>:268798675780003</b></th>
+                </tr>
+                <tr>
+                    <th>IFSC Code<b style='margin:21px;'>:UTIB0000188</b></th>
+                </tr>
+            </tbody>
+         </table> -->
+
+         <table class='table2'>
+            <tbody>
+                <tr style='height:50px;'>
+                    <th></th>
+                    <th></th>
+                    <th style='text-align:center'>{{ user_name }}</th>
+                </tr>
+                <tr>
+                    <th style='text-align:right;width:20%'>Checked By</th>
+                    <th style='width:48%;'></th>
+                    <th style='text-align:center;'>{{ company.company_name }}</th>
+                </tr>
+            </tbody>
+         </table>
+     </div> 
+    </body>
+</html>

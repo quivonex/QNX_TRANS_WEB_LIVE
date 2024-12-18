@@ -1,0 +1,510 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block title %}Create LR Booking{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/custom_lr_booking_view.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'css/custom_lr_booking_view.css' %}">
+{% endblock %}
+
+{% block content %}
+{{ block.super }}
+
+<div class="form-container">
+
+
+    <!-- Form for creating a new LR Booking -->
+    {% comment %} <form method="post" action="{% url 'admin:custom_lr_booking_view' %}"> {% endcomment %}
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- <h1>{{ extra_field_value }}</h1> -->
+
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="{{ form.lr_no.id_for_label }}">{{ form.lr_no.label }}</label>
+                    {{ form.lr_no }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.branch.id_for_label }}">{{ form.branch.label }}</label>
+                    {{form.branch}}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.date.id_for_label }}">{{ form.date.label }}</label>
+                    {{ form.date }}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="{{ form.coll_vehicle.id_for_label }}">{{ form.coll_vehicle.label }}</label>
+                    {{ form.coll_vehicle }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.tran_vehicle.id_for_label }}">{{ form.tran_vehicle.label }}</label>
+                    {{ form.tran_vehicle }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.del_vehicle.id_for_label }}">{{ form.del_vehicle.label }}</label>
+                    {{ form.del_vehicle }}
+                </div>
+            </div>
+
+
+            <div class="form-row">
+
+                <div class="form-field">
+                    <label for="{{ form.consignor.id_for_label }}">{{ form.consignor.label }}</label>
+                    {{ form.consignor }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.consignee.id_for_label }}">{{ form.consignee.label }}</label>
+                    {{ form.consignee }}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="{{ form.pay_type.id_for_label }}">{{ form.pay_type.label }}</label>
+                    {{ form.pay_type }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.billing_party.id_for_label }}">{{ form.billing_party.label }}</label>
+                    {{ form.billing_party }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.load_type.id_for_label }}">{{ form.load_type.label }}</label>
+                    {{ form.load_type }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.type.id_for_label }}">{{ form.type.label }}</label>
+                    {{ form.type }}
+                </div>
+            </div>
+            <div class="form-row">
+
+                <div class="form-field">
+                    <label for="{{ form.coll_type.id_for_label }}">{{ form.coll_type.label }}</label>
+                    {{ form.coll_type }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.from_branch.id_for_label }}">{{ form.from_branch.label }}</label>
+                    {{ form.from_branch }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.coll_at.id_for_label }}">{{ form.coll_at.label }}</label>
+                    {{ form.coll_at }}
+                </div>
+                <div class="form-field">
+                    <label for="km">KM</label>
+                    <input type="number" id="km" name="km">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="{{ form.del_type.id_for_label }}">{{ form.del_type.label }}</label>
+                    {{ form.del_type }}
+                </div>
+
+                <div class="form-field">
+                    <label for="{{ form.to_branch.id_for_label }}">{{ form.to_branch.label }}</label>
+                    {{ form.to_branch }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.del_at.id_for_label }}">{{ form.del_at.label }}</label>
+                    {{ form.del_at }}
+                </div>
+                <div class="form-field">
+                    <label for="km">KM</label>
+                    <input type="number" id="km" name="km">
+                </div>
+            </div>
+            <hr style="border-bottom: solid 2px black; margin-bottom: 10px;">
+
+            <!-- <div class="form-row">
+
+                <div class="form-field">
+                    <label for="{{ form.descriptions.id_for_label }}">{{ form.descriptions.label }}</label>
+                    {{form.descriptions}}
+                </div>
+
+            </div> -->
+
+            <!-- Static Input Fields for New Entry -->
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="description">Description</label>
+                    <select id="description" name="description">
+                        {% for descrip in description %}
+                        <option value="{{ descrip.id }}">{{ descrip.item_name }}</option>
+                        {% empty %}
+                        <option value="">No branches available</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" id="quantity" name="quantity">
+                </div>
+                <div class="form-field">
+                    <label for="actual_weight">Actual Weight</label>
+                    <input type="text" id="actual_weight" name="actual_weight">
+                </div>
+                <div class="form-field">
+                    <label for="charged_weight">Charged Weight</label>
+                    <input type="text" id="charged_weight" name="charged_weight">
+                </div>
+                <div class="form-field">
+                    <label for="unit_type">Unit Type</label>
+
+                    <select id="unit_type" name="unit_type">
+                        {% for branch in unit_type %}
+                        <option value="{{ branch.id }}">{{ branch.type_name }}</option>
+                        {% empty %}
+                        <option value="">No branches available</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- Additional Fields -->
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="rate">Rate</label>
+                    <input type="text" id="rate" name="rate">
+                </div>
+                <div class="form-field">
+                    <label for="challan_no">Challan No</label>
+                    <input type="text" id="challan_no" name="challan_no">
+                </div>
+                <div class="form-field">
+                    <label for="inv_value">Invoice Value</label>
+                    <input type="text" id="inv_value" name="inv_value">
+                </div>
+                <div class="form-field">
+                    <label for="e_way_bill_no">E-Way Bill No</label>
+                    <input type="text" id="e_way_bill_no" name="e_way_bill_no">
+                </div>
+            </div>
+
+            <button type="button" id="addButton" onclick="addToList()">Add Item</button>
+            <button type="button" id="updateButton" onclick="updateItem()" style="display:none;">Update Item</button>
+            <hr style="border-bottom: solid 2px black; margin-bottom: 10px;margin-top: 10px;">
+            <!-- Dynamic List/Table for Added Items -->
+            <table id="item-list">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Actual Weight</th>
+                        <th>Charged Weight</th>
+                        <th>Unit Type</th>
+                        <th>Rate</th>
+                        <th>Challan No</th>
+                        <th>Invoice Value</th>
+                        <th>E-Way Bill No</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for desc in description_data %}
+                    <tr>
+                        <td>{{ desc.id }}</td>
+                        <td>{{ desc.description.id }}</td>
+                        <td>{{ desc.quantity }}</td>
+                        <td>{{ desc.actual_weight }}</td>
+                        <td>{{ desc.charged_weight }}</td>
+                        <td>{{ desc.unit_type.id }}</td>
+                        <td>{{ desc.rate }}</td>
+                        <td>{{ desc.challan_no }}</td>
+                        <td>{{ desc.inv_value }}</td>
+                        <td>{{ desc.e_way_bill_no }}</td>
+                        <td>
+                            <button type="button" onclick="editItem(this)" style="padding: 2px 4px;">Edit</button>
+                            <button type="button" class="remove-button" onclick="removeItem(this)"
+                                style="padding: 2px 4px;">Remove</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Add a hidden input to store serialized table data -->
+            <input type="hidden" id="serialized_table_data" name="serialized_table_data">
+
+            <hr style="border-bottom: solid 2px black; margin-bottom: 10px;margin-top: 10px;">
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="{{ form.remark.id_for_label }}">{{ form.remark.label }}</label>
+                    {{ form.remark }}
+                </div>
+            </div>
+            <hr style="border-bottom: solid 2px black; margin-bottom: 10px;margin-top: 10px;">
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="{{ form.freight.id_for_label }}">{{ form.freight.label }}</label>
+                    {{ form.freight }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.e_way_bill_charges.id_for_label }}">{{ form.e_way_bill_charges.label }}</label>
+                    {{ form.e_way_bill_charges }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.collection.id_for_label }}">{{ form.collection.label }}</label>
+                    {{ form.collection }}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="{{ form.door_delivery.id_for_label }}">{{ form.door_delivery.label }}</label>
+                    {{ form.door_delivery }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.toll_escort_total.id_for_label }}">{{ form.toll_escort_total.label }}</label>
+                    {{ form.toll_escort_total }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.bilty_charges.id_for_label }}">{{ form.bilty_charges.label }}</label>
+                    {{ form.bilty_charges }}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="{{ form.hamali.id_for_label }}">{{ form.hamali.label }}</label>
+                    {{ form.hamali }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.godown_charges.id_for_label }}">{{ form.godown_charges.label }}</label>
+                    {{ form.godown_charges }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.insurance_charges.id_for_label }}">{{ form.insurance_charges.label }}</label>
+                    {{ form.insurance_charges }}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="{{ form.total.id_for_label }}">{{ form.total.label }}</label>
+                    {{ form.total }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.waiting.id_for_label }}">{{ form.waiting.label }}</label>
+                    {{ form.waiting }}
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.fuel_surcharge.id_for_label }}">{{ form.fuel_surcharge.label }}</label>
+                    {{ form.fuel_surcharge }}
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="{{ form.grand_total.id_for_label }}">{{ form.grand_total.label }}</label>
+                    {{ form.grand_total }}
+                </div>
+            </div>
+            <button type="submit">Save</button>
+            <button type="button" id="delete-button">
+                <a href="{% url 'delete_lr_booking' 5 %}" style="color: #fff;">Delete</a>
+            </button>
+        </form>
+</div>
+
+<!-- Modal for Consignor Details -->
+<div class="modal fade" id="consignorDetailsModal" tabindex="-1" role="dialog"
+    aria-labelledby="consignorDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="consignorDetailsModalLabel">Consignor Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Content to display Consignor Details -->
+                <p><strong>Party Type:</strong> <span id="party-type"></span></p>
+                <p><strong>Party Name:</strong> <span id="party-name"></span></p>
+                <p><strong>Address:</strong> <span id="address"></span></p>
+                <p><strong>Area:</strong> <span id="area"></span></p>
+                <p><strong>Contact No:</strong> <span id="contact-no"></span></p>
+                <p><strong>Email ID:</strong> <span id="email-id"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Consignee Details -->
+<div class="modal fade" id="consigneeDetailsModal" tabindex="-1" role="dialog"
+    aria-labelledby="consigneeDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="consigneeDetailsModalLabel">Consignee Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Content to display Consignee Details -->
+                <p><strong>Party Type:</strong> <span id="consignee-party-type"></span></p>
+                <p><strong>Party Name:</strong> <span id="consignee-party-name"></span></p>
+                <p><strong>Address:</strong> <span id="consignee-address"></span></p>
+                <p><strong>Area:</strong> <span id="consignee-area"></span></p>
+                <p><strong>Contact No:</strong> <span id="consignee-contact-no"></span></p>
+                <p><strong>Email ID:</strong> <span id="consignee-email-id"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript to handle the popup
+    document.addEventListener('DOMContentLoaded', function () {
+        const consignorSelect = document.querySelector('#id_consignor'); // Ensure this ID is correct
+
+        consignorSelect.addEventListener('change', function () {
+            const selectedConsignorId = this.value;
+
+            if (selectedConsignorId) {
+                // Fetch consignor details via AJAX
+                fetch(`/lr_booking/get-consignor-details/${selectedConsignorId}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("data from view", data);
+
+                        // Populate modal with fetched data
+                        document.querySelector('#party-type').textContent = data.party_type;
+                        document.querySelector('#party-name').textContent = data.party_name;
+                        document.querySelector('#address').textContent = data.address;
+                        document.querySelector('#area').textContent = data.area;
+                        document.querySelector('#contact-no').textContent = data.contact_no;
+                        document.querySelector('#email-id').textContent = data.email_id;
+
+                        // Use Bootstrap's modal method to show the modal
+                        $('#consignorDetailsModal').modal('show');
+                    })
+                    .catch(error => console.error('Error fetching consignor details:', error));
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const consigneeSelect = document.querySelector('#id_consignee'); // Ensure this ID is correct
+
+        consigneeSelect.addEventListener('change', function () {
+            const selectedConsigneeId = this.value;
+
+            if (selectedConsigneeId) {
+                // Fetch consignee details via AJAX
+                fetch(`/lr_booking/get-consignor-details/${selectedConsigneeId}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("data from view", data);
+
+                        // Populate modal with fetched data
+                        document.querySelector('#consignee-party-type').textContent = data.party_type;
+                        document.querySelector('#consignee-party-name').textContent = data.party_name;
+                        document.querySelector('#consignee-address').textContent = data.address;
+                        document.querySelector('#consignee-area').textContent = data.area;
+                        document.querySelector('#consignee-contact-no').textContent = data.contact_no;
+                        document.querySelector('#consignee-email-id').textContent = data.email_id;
+
+                        // Use Bootstrap's modal method to show the modal
+                        $('#consigneeDetailsModal').modal('show');
+                    })
+                    .catch(error => console.error('Error fetching consignee details:', error));
+            }
+        });
+    });
+
+
+</script>
+
+<!-- jQuery first, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="{% static 'js/custom_lr_booking_view.js' %}" defer> </script>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        updateSerializedTableData();
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const dateField = document.getElementById('id_date');
+
+        if (dateField) {
+            const today = new Date();
+            const formattedDate = today.toISOString().split('T')[0];
+
+            dateField.value = formattedDate;
+            dateField.readOnly = true;
+        }
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        const collTypeField = document.getElementById('id_coll_type');
+        const collAtField = document.getElementById('id_coll_at');
+        const delTypeField = document.getElementById('id_del_type');  // Reference to the delivery type field
+        const delAtField = document.getElementById('id_del_at');      // Reference to the delivery at field
+
+        function toggleCollAtField() {
+            if (collTypeField && collAtField) {
+                if (collTypeField.value === '2') {  // Assuming '2' is the value for 'Godown'
+                    collAtField.disabled = true;    // Disable the field
+                    collAtField.value = null;       // Set value to null or empty
+                } else {
+                    collAtField.disabled = false;   // Enable the field
+                }
+            }
+        }
+
+        function toggleDelAtField() {
+            if (delTypeField && delAtField) {
+                if (delTypeField.value === '2') {  // Assuming '2' is the value for hiding the field
+                    delAtField.disabled = true;    // Disable the field
+                    delAtField.value = null;       // Set value to null or empty
+                } else {
+                    delAtField.disabled = false;   // Enable the field
+                }
+            }
+        }
+
+        // Set the field's value to null or empty right before the form is submitted
+        document.querySelector('form').addEventListener('submit', function (event) {
+            if (collTypeField.value === '2' && collAtField.disabled) {
+                collAtField.disabled = false;    // Enable the field before submission
+                collAtField.value = null;        // Ensure value is set to null or empty
+            }
+            if (delTypeField.value === '2' && delAtField.disabled) {
+                delAtField.disabled = false;     // Enable the field before submission
+                delAtField.value = null;         // Ensure value is set to null or empty
+            }
+        });
+
+        // Initialize the state of the fields based on their current values
+        toggleCollAtField();
+        toggleDelAtField();
+
+        // Add event listeners to handle changes
+        collTypeField.addEventListener('change', toggleCollAtField);
+        delTypeField.addEventListener('change', toggleDelAtField);
+    });
+</script>
+{% endblock %}

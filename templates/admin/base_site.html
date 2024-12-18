@@ -1,0 +1,100 @@
+{% extends "admin/base_site.html" %}
+
+{% load static %}
+
+{% block title %}My Admin Site{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<style>
+    /* Style for the loading spinner */
+    .spinner {
+        display: none;
+        /* Initially hidden */
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-left: 4px solid #000;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        animation: spin 1s linear infinite;
+        margin-left: 10px;
+        /* Adjust as needed */
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .custom-financial-year-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .custom-financial-year {
+        margin-top: 10px;
+        font-size: 14px;
+        margin-left: 620px;
+    }
+
+    @media (max-width: 768px) {
+        .custom-financial-year-container {
+            flex-direction: column;
+            align-items: flex-start;
+            margin-left: 20px;
+        }
+
+        .custom-financial-year {
+            font-size: 12px;
+            margin-left: 0;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .custom-financial-year-container {
+            flex-direction: column;
+            align-items: flex-start;
+            margin-left: 10px;
+        }
+
+        .custom-financial-year {
+            font-size: 10px;
+            margin-left: 0;
+        }
+    }
+</style>
+{% endblock %}
+
+<div id="loadingSpinner" class="spinner"></div>
+
+
+
+{% block branding %}
+{{ block.super }}
+<div class="custom-financial-year">
+    {% if financial_year %}
+    Financial Year: {{ branch.branch_name }} {{ financial_year.year_name }}
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block navbar %}
+{{ block.super }}
+<!-- Add custom sidebar content here -->
+<div class="custom-sidebar-content">
+    <!-- Custom links or content -->
+    <ul>
+        <li><a href="{% url 'admin:custom_admin_view' %}">Custom LR Bookings</a></li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block content %}
+{{ block.super }}
+{% endblock %}

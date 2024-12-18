@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <title>Delivery Statement</title>
+       
+        <style>
+            table{width:100%;height: 100%;
+                border: 1px solid black;border-collapse: collapse;}
+                th,td{border:1px solid black; padding:3px 5px;font-size: 13px;
+                }
+                .head-table
+                {
+                    position: relative;
+                    bottom:20px;
+                    border: none;
+                    width:110%;
+                    th,td{
+                        border: none;
+                    }
+                }
+                
+            
+                .table2
+                {
+                    td,th{
+                        text-align: center;
+                    }
+                }
+                .table3
+                 {
+                    border: none;
+                    th,td{
+                        border:none;
+                        text-align: center;
+                        } 
+                 } 
+                 .main-heading
+                 {
+                    font-family: Arial,  sans-serif;
+                    color: red;
+                    font-weight: bold;
+                    text-transform: uppercase;    
+                    font-size: 35px;
+                    position:relative;
+                    bottom:90px;
+                    text-align:center;
+                 }
+                .heading
+                {
+                    position:relative;
+                    text-align: center;
+                    bottom: 130px;
+                }
+                 .header {
+                    text-align: center;
+                  }
+                  .header img {
+                    width: 170px;
+                    height:150px;
+                    float: left;
+                    right: 30px;
+                    position: relative;
+                    bottom: 170px;
+                  }
+                  .info
+                  {
+                   position: relative;
+                   bottom:120px;
+                   right:70px;
+                  }
+        
+               .barcode {
+                position: relative;
+                right: -580px;
+                width: 200px;
+                height: 50px;
+                top:100px;
+               }
+               .barcode img {
+                 width: 100%;
+                 height: 35px;
+               }
+               .barcode h3 {
+                 display: none;
+               }
+               .address{
+                font-size:13px;
+                white-space: normal; 
+                word-wrap: break-word;
+                width:620px;
+                position: relative;
+                left: 50px;
+              }
+              .main-t{
+                position: relative;
+                bottom: 135px;
+              }
+        </style>
+    </head>
+
+    <body>
+       
+        <div class='barcode'>
+           <table class='head-table'>
+            <tbody>
+                <tr>
+                    <td style='width:10px;'>Delivery No:</td>
+                    <td>{{ statement.delivery_no }}</td>
+                </tr>
+                <tr>
+                    <td>Branch Name:</td>
+                    <td>{{ statement.branch_name }}</td>
+                </tr>
+                <tr>
+                    <td>Date:</td>
+                    <td>{{ statement.date|date:'d/m/Y' }}</td>
+                </tr>
+            </tbody>
+           </table>
+          </div>
+          <h3 class='main-heading'>{{ company.company_name }}</h3>
+          <div class='header'>
+            <img src='{{ MEDIA_URL }}{{ company.company_logo }}' alt='Company Logo' />
+
+            <div class='info'>
+                <p class='address'>{{ company.address }}</p>
+                <p style='position:relative;bottom:10px;right:25px;font-size:13px;'>
+                    EMAIL: <b style='font-weight:normal;font-size:14px;'>{{ company.email_id }}&nbsp;&nbsp;MOB:{{ company.contact_number }}</b>
+                </p>
+            </div>
+
+          </div>
+
+         <h2 class='heading'>Delivery Statement</h2>
+
+    <div class='main-t'>
+        <table class='table2'>
+            <tbody>
+                <tr>
+                    <th>LR No</th>
+                    <th>LR Date</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th style='width:400px;'>Consignor</th>
+                    <th style='width:400px;'>Consignee</th>
+                    <th>Wt</th>
+                    <th>Qty</th>
+                    <th>LR Type</th>
+                </tr>
+                
+                {% for lr in bookings %}
+                <tr>
+                    <td>{{ lr.lr_number }}</td>
+                    <td>{{ lr.date|date:'d/m/Y' }}</td>
+                    <td>{{ lr.from_branch }}</td>
+                    <td>{{ lr.to_branch }}</td>
+                    <td>{{ lr.consignor }}</td>
+                    <td>{{ lr.consignee }}</td>
+                    <td>{{ lr.tchargedwt|floatformat:0 }}</td>
+                    <td>{{ lr.tpackage|floatformat:0 }}</td>
+                    <td>{{ lr.load_type.type_name }}</td>
+                </tr>
+                {% endfor %}
+
+        <table class='table3'>
+            <tbody>
+                <tr>
+                     <th style='height:20px;'></th>
+                    <td></td>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>{{ user_name }}</th>
+                    <td style='width: 200px;'></td>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>Prepare By</th>
+                    <th></th>
+                    <th>Checked By</th>
+                </tr>
+
+                <tr>
+                    <th>{{ statement.created_at|date:'d/m/Y h:i A' }}</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            
+            </tbody>
+        </table>
+    </div>
+    </body>
+</html>

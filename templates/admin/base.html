@@ -1,0 +1,13 @@
+<!-- templates/admin/base.html -->
+{% extends "admin/base.html" %}
+
+{% block sidebar %}
+<div id="sidebar">
+    <h2>Custom Sidebar</h2>
+    <ul>
+        <li><a href="{% url 'admin:app_list' 'company' %}">Company</a></li>
+        <li><a href="{% url 'admin:app_list' 'branches' %}">Branches</a></li>
+        <li><a href="{% url 'admin:app_list' 'destinations' %}">Destinations</a></li>
+    </ul>
+</div>
+{% endblock %}

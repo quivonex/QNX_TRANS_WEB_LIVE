@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <title>TUR</title>
+
+        <style>
+            table{width:100%;height: 100%;
+                border: 1px solid black;border-collapse: collapse;}
+                th,td{border:1px solid black; padding:3px 5px;font-size: 13px;
+                }
+                .table1{
+                    th,td{
+                        border: none;
+                    }
+                }
+                .table1
+                {
+                   th,td{
+                    border: none;
+                     }
+                }
+                .sub-table1
+                {
+                     border: none;
+
+                }
+                .table2
+                {
+                    td,th{
+                        text-align: center;
+                    }
+                }
+                .table3
+                 {
+                    th,td{
+                        border:none;
+                        text-align: center;
+                        } 
+                 } 
+                 .main-heading
+                 {
+                    font-family: Arial,  sans-serif;
+                    color: red;
+                    font-weight: bold;
+                    text-transform: uppercase;    
+                    font-size: 35px;
+                    position:relative;
+                    bottom:90px;
+                    text-align:center;
+                 }
+                 .heading
+                 {
+                     position:relative;
+                     text-align: center;
+                     bottom:130px;
+                 }
+                 .header {
+                    text-align: center;
+                  }
+                  .header img {
+                    width: 170px;
+                    height:150px;
+                    float: left;
+                    right: 30px;
+                    position: relative;
+                    bottom:170px;
+                  }
+                  .info
+                  {
+                   position: relative;
+                   bottom:120px;
+                   right:70px;
+                  }
+       
+                  .barcode {
+                    position: relative;
+                    right: -580px;
+                    width: 200px;
+                    height: 50px;
+                    top:85px;
+                 }
+                 .barcode img {
+                    width: 100%;
+                    height: 35px;
+                  }
+                  .barcode h3 {
+                    display: none;
+                  }
+                  .address{
+                    font-size:13px;
+                    white-space: normal; 
+                    word-wrap: break-word;
+                    width:620px;
+                    position: relative;
+                    left: 50px;
+                  }
+                  .main-t{
+                    position: relative;
+                    bottom: 135px;
+                  }
+        </style>
+    </head>
+
+    <body>
+        <div class='barcode'>
+            <img
+              src='data:image/png;base64,{{ barcode_base64 }}'
+              alt='Trip Memo No Barcode'
+            />
+          </div>
+          <h3 class='main-heading'>{{ company.company_name }}</h3>
+          <div class='header'>
+            <img src='{{ MEDIA_URL }}{{ company.company_logo }}' alt='Company Logo' />
+
+            <div class='info'>
+                <p class='address'>{{ company.address }}</p>
+                <p style='position:relative;bottom:10px;right:25px;font-size:13px;'>
+                    EMAIL: <b style='font-weight:normal;font-size:14px;'>{{ company.email_id }}&nbsp;&nbsp;MOB:{{ company.contact_number }}</b>
+                </p>
+            </div>
+
+          </div>
+
+         <h3 class='heading'>TRUCK UNLOADING REPORT</h3>
+    <div class='main-t'>
+         <table  class='table1'>
+            <tbody>
+                <tr>
+                    <th>Branch</th>
+                    <td>{{ report.branch_name }}</td>
+                    <th>Tur No</th>
+                    <th>{{ report.tur_no }}</th>
+                    <th>Tur Date</th>
+                    <td>{{ report.date|date:'d/m/Y' }}</td>
+                </tr>
+                <tr>
+                    <th>Driver Name</th>
+                    <td>{{ report.memo_no.driver_name }}</td>
+                    <th>Vehicale No</th>
+                    <td>{{ report.memo_no.vehical_no }}</td>
+                    <th>Vehicle Type</th>
+                    <td>{{ report.memo_no.vehical_no.vehical_type }}</td>
+                </tr>
+                <tr>
+                    <th>From</th>
+                    <td>{{ report.memo_no.from_branch }}</td>
+                    <th>To</th>
+                    <td>{{ report.memo_no.to_branch }}</td>
+                    <th>Memo No</th>
+                    <td>{{ report.memo_no.memo_no }}</td>
+                </tr>
+                <tr>
+                    <th>Owner Name</th>
+                    <td>{{ report.memo_no.vehical_no.owner}}</td>
+                    <th>Contact No</th>
+                    <td>{{ report.memo_no.contact_no }}</td>
+                    <th>Memo Date</th>
+                    <td>{{report.date|date:'d/m/Y'}}</td>
+                </tr>
+            </tbody>
+         </table>
+
+        <table class='table2'>
+            <tbody>
+                <tr>
+                    <th>Status</th>
+                    <th>LR No</th>
+                    <th>LR Date</th>
+                    <th style='width:400px;'>Consignor</th>
+                    <th style='width:400px;'>Consignee</th>
+                    <th>Pkgs</th>
+                    <th>Wt</th>
+                    <th>Del Type</th>
+                    <th>Remark</th>
+                </tr>
+                {% for detail in details %}
+                <tr>
+                    <td>{{ detail.status.status }}</td>
+                    <td>{{ detail.lr_booking.lr_number }}</td>
+                    <td>{{ detail.lr_booking.date|date:'d/m/Y' }}</td>
+                    <td>{{ detail.lr_booking.consignor }}</td>
+                    <td>{{ detail.lr_booking.consignee }}</td>
+                    <td style='text-align:center'>{{ detail.lr_booking.tpackage|floatformat:0 }}</td>
+                    <td style='text-align:center'>{{ detail.lr_booking.tchargedwt|floatformat:0 }}K.G.</td>
+                    <td>{{ detail.lr_booking.del_type }}</td>
+                    <td>{{ detail.remark }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <th colspan='5'>Total </th>
+                    <th>{{ report.total_weight|floatformat:0 }}</th>
+                    <th>{{ report.total_qty|floatformat:0 }}</th>
+                    <th colspan='2'></th>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class='table3'>
+            <tbody>
+                <tr>
+                    <th>{{ user_name }}</th>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Prepared By</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>{{ report.created_at|date:'d/m/Y h:i A' }}</th>
+                    <th>Loading Clerk</th>
+                    <th>Owner's/Driver's Signature</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </body>
+</html>
